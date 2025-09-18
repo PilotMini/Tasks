@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания по операциям сравнения и логическим операциям</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+            tab-size: 4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+            margin: 10px 0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .logic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .logic-table th, .logic-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .logic-table th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        .logic-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Практические задания по операциям сравнения и логическим операциям</h1>
+        
+        <div class="note">
+            <strong>📝 Описание:</strong> Это набор практических заданий по работе с операциями сравнения и логическими операциями в Python.
+        </div>
+
+        <h2>Операции сравнения</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Операция</th>
+                <th>Описание</th>
+                <th>Пример</th>
+            </tr>
+            <tr>
+                <td>==</td>
+                <td>Равно</td>
+                <td>5 == 5 → True</td>
+            </tr>
+            <tr>
+                <td>!=</td>
+                <td>Не равно</td>
+                <td>5 != 3 → True</td>
+            </tr>
+            <tr>
+                <td>></td>
+                <td>Больше</td>
+                <td>5 > 3 → True</td>
+            </tr>
+            <tr>
+                <td><</td>
+                <td>Меньше</td>
+                <td>5 < 3 → False</td>
+            </tr>
+            <tr>
+                <td>>=</td>
+                <td>Больше или равно</td>
+                <td>5 >= 5 → True</td>
+            </tr>
+            <tr>
+                <td><=</td>
+                <td>Меньше или равно</td>
+                <td>5 <= 3 → False</td>
+            </tr>
+        </table>
+
+        <h2>Логические операции</h2>
+        <table class="logic-table">
+            <tr>
+                <th>x</th>
+                <th>y</th>
+                <th>and</th>
+                <th>or</th>
+                <th>not x</th>
+            </tr>
+            <tr>
+                <td>True</td>
+                <td>True</td>
+                <td>True</td>
+                <td>True</td>
+                <td>False</td>
+            </tr>
+            <tr>
+                <td>True</td>
+                <td>False</td>
+                <td>False</td>
+                <td>True</td>
+                <td>False</td>
+            </tr>
+            <tr>
+                <td>False</td>
+                <td>True</td>
+                <td>False</td>
+                <td>True</td>
+                <td>True</td>
+            </tr>
+            <tr>
+                <td>False</td>
+                <td>False</td>
+                <td>False</td>
+                <td>False</td>
+                <td>True</td>
+            </tr>
+        </table>
+
+        <h2>Задание 1: Базовые операции сравнения</h2>
+        <div class="task">
+            <p>Вычислите результаты следующих операций сравнения:</p>
+            <ol>
+                <li>10 == 10</li>
+                <li>10 != 5</li>
+                <li>15 > 10</li>
+                <li>15 < 20</li>
+                <li>25 >= 25</li>
+                <li>30 <= 25</li>
+            </ol>
+            <p>Проверьте свои ответы с помощью кода на Python.</p>
+        </div>
+
+        <h2>Задание 2: Сравнение строк</h2>
+        <div class="task">
+            <p>Вычислите результаты следующих операций сравнения строк:</p>
+            <ol>
+                <li>"hello" == "hello"</li>
+                <li>"hello" == "world"</li>
+                <li>"apple" < "banana"</li>
+                <li>"zebra" > "apple"</li>
+                <li>"Python" != "python"</li>
+                <li>"123" == 123</li>
+            </ol>
+            <p>Объясните, почему последнее выражение дает такой результат.</p>
+        </div>
+
+        <h2>Задание 3: Логическое И (and)</h2>
+        <div class="task">
+            <p>Вычислите результаты следующих выражений с оператором and:</p>
+            <ol>
+                <li>True and True</li>
+                <li>True and False</li>
+                <li>False and True</li>
+                <li>False and False</li>
+                <li>5 > 3 and 10 < 15</li>
+                <li>"hello" == "hello" and 5 != 5</li>
+            </ol>
+        </div>
+
+        <h2>Задание 4: Логическое ИЛИ (or)</h2>
+        <div class="task">
+            <p>Вычислите результаты следующих выражений с оператором or:</p>
+            <ol>
+                <li>True or True</li>
+                <li>True or False</li>
+                <li>False or True</li>
+                <li>False or False</li>
+                <li>5 > 10 or 10 < 15</li>
+                <li>"hello" == "world" or 5 == 5</li>
+            </ol>
+        </div>
+
+        <h2>Задание 5: Логическое НЕ (not)</h2>
+        <div class="task">
+            <p>Вычислите результаты следующих выражений с оператором not:</p>
+            <ol>
+                <li>not True</li>
+                <li>not False</li>
+                <li>not (5 > 3)</li>
+                <li>not ("hello" == "world")</li>
+                <li>not (10 < 5 or 20 > 15)</li>
+                <li>not (5 == 5 and 10 != 10)</li>
+            </ol>
+        </div>
+
+        <h2>Задание 6: Комбинированные логические выражения</h2>
+        <div class="task">
+            <p>Вычислите результаты следующих выражений:</p>
+            <ol>
+                <li>(5 > 3) and (10 < 15) or (20 == 10)</li>
+                <li>not (5 != 5) and (10 >= 10)</li>
+                <li>("hello" == "world") or (not (5 < 3))</li>
+                <li>(15 > 10) and (not (20 < 25)) or (30 == 30)</li>
+            </ol>
+            <p>Не забудьте учитывать приоритет операций: not > and > or.</p>
+        </div>
+
+        <h2>Задание 7: Оператор in</h2>
+        <div class="task">
+            <p>Для строки <code>message = "Hello, welcome to Python programming!"</code> проверьте:</p>
+            <ol>
+                <li>Есть ли подстрока "Python" в строке</li>
+                <li>Есть ли подстрока "java" в строке</li>
+                <li>Есть ли подстрока "Hello" в строке</li>
+                <li>Нет ли подстрока "JavaScript" в строке (используйте not in)</li>
+            </ol>
+        </div>
+
+        <h2>Задание 8: Проверка возраста</h2>
+        <div class="task">
+            <p>Напишите программу, которая:</p>
+            <ol>
+                <li>Запрашивает у пользователя возраст</li>
+                <li>Проверяет, что возраст между 18 и 65 годами включительно</li>
+                <li>Выводит сообщение "Доступ разрешен" или "Доступ запрещен"</li>
+            </ol>
+        </div>
+
+        <h2>Задание 9: Проверка логина и пароля</h2>
+        <div class="task">
+            <p>Напишите программу, которая:</p>
+            <ol>
+                <li>Запрашивает у пользователя логин и пароль</li>
+                <li>Проверяет, что логин "admin" и пароль "12345"</li>
+                <li>Выводит сообщение "Вход выполнен" или "Неверный логин или пароль"</li>
+            </ol>
+        </div>
+
+        <h2>Задание 10: Сложная проверка</h2>
+        <div class="task">
+            <p>Напишите программу, которая проверяет, удовлетворяет ли число следующим условиям:</p>
+            <ol>
+                <li>Число положительное</li>
+                <li>Число четное</li>
+                <li>Число делится на 3 без остатка</li>
+                <li>Число не заканчивается на 0</li>
+            </ol>
+            <p>Выведите результат проверки для чисел: 6, 12, 15, 20, 24, 30.</p>
+        </div>
+
+        <div class="note">
+            <strong>💡 Как выполнять задания:</strong><br>
+            1. Создайте новый файл Python для каждого задания<br>
+            2. Напишите код, решающий задачу<br>
+            3. Проверьте, что код работает правильно<br>
+            4. Сравните ваше решение с ответами для самопроверки
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            Удачи в изучении операций сравнения и логических операций! 🐍
+        </div>
+    </div>
+</body>
+</html>
