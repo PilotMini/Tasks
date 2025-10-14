@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания по классам в Python</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+            tab-size: 4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+            margin: 10px 0;
+        }
+        .class-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .class-table th, .class-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .class-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        .class-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .class-diagram {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+            position: relative;
+        }
+        .class-part {
+            color: #f39c12;
+            position: absolute;
+            right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Практические задания по классам в Python</h1>
+        
+        <div class="note">
+            <strong>📝 Описание:</strong> Это набор практических заданий по работе с классами и объектами в Python.
+        </div>
+
+        <h2>Структура класса</h2>
+        <table class="class-table">
+            <tr>
+                <th>Компонент</th>
+                <th>Описание</th>
+                <th>Пример</th>
+            </tr>
+            <tr>
+                <td>Конструктор</td>
+                <td>Метод __init__, вызывается при создании объекта</td>
+                <td>def __init__(self): ...</td>
+            </tr>
+            <tr>
+                <td>Атрибуты</td>
+                <td>Переменные, хранящие состояние объекта</td>
+                <td>self.name = "Tom"</td>
+            </tr>
+            <tr>
+                <td>Методы</td>
+                <td>Функции, определяющие поведение объекта</td>
+                <td>def say_hello(self): ...</td>
+            </tr>
+            <tr>
+                <td>Деструктор</td>
+                <td>Метод __del__, вызывается при удалении объекта</td>
+                <td>def __del__(self): ...</td>
+            </tr>
+        </table>
+
+        <h2>Схема класса</h2>
+        <div class="class-diagram">
+            class Person:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, name, age):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = name  # Атрибут<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.age = age    # Атрибут<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def display_info(self):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"{self.name}, {self.age}")  # Метод<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def __del__(self):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Удален {self.name}")  # Деструктор<br>
+            <br>
+            # Создание объекта<br>
+            person = Person("Tom", 25)<br>
+            person.display_info()
+            <div class="class-part" style="top: 15px;">← Конструктор</div>
+            <div class="class-part" style="top: 45px;">← Атрибуты</div>
+            <div class="class-part" style="top: 90px;">← Метод</div>
+            <div class="class-part" style="top: 120px;">← Деструктор</div>
+        </div>
+
+        <h2>Задание 1: Простой класс Person</h2>
+        <div class="task">
+            <p>Создайте класс <code>Person</code> с базовыми атрибутами и методами:</p>
+            <ol>
+                <li>Конструктор принимает имя и возраст</li>
+                <li>Метод <code>display_info()</code> выводит информацию о человеке</li>
+                <li>Метод <code>say_hello()</code> выводит приветствие</li>
+                <li>Создайте несколько объектов и протестируйте методы</li>
+            </ol>
+        </div>
+
+        <h2>Задание 2: Класс BankAccount</h2>
+        <div class="task">
+            <p>Создайте класс <code>BankAccount</code> для работы с банковским счетом:</p>
+            <ol>
+                <li>Конструктор принимает начальный баланс (по умолчанию 0)</li>
+                <li>Метод <code>deposit(amount)</code> для пополнения счета</li>
+                <li>Метод <code>withdraw(amount)</code> для снятия денег</li>
+                <li>Метод <code>get_balance()</code> для получения текущего баланса</li>
+                <li>Проверяйте достаточность средств при снятии</li>
+            </ol>
+        </div>
+
+        <h2>Задание 3: Класс Student с динамическими атрибутами</h2>
+        <div class="task">
+            <p>Создайте класс <code>Student</code>, который позволяет добавлять оценки:</p>
+            <ol>
+                <li>Конструктор принимает имя студента</li>
+                <li>Метод <code>add_grade(subject, grade)</code> добавляет оценку по предмету</li>
+                <li>Метод <code>get_average()</code> вычисляет средний балл</li>
+                <li>Метод <code>get_subjects()</code> возвращает список предметов</li>
+                <li>Используйте словарь для хранения оценок</li>
+            </ol>
+        </div>
+
+        <h2>Задание 4: Класс Rectangle с вычисляемыми свойствами</h2>
+        <div class="task">
+            <p>Создайте класс <code>Rectangle</code> для работы с прямоугольниками:</p>
+            <ol>
+                <li>Конструктор принимает ширину и высоту</li>
+                <li>Метод <code>get_area()</code> возвращает площадь</li>
+                <li>Метод <code>get_perimeter()</code> возвращает периметр</li>
+                <li>Метод <code>is_square()</code> проверяет, является ли прямоугольник квадратом</li>
+                <li>Метод <code>scale(factor)</code> масштабирует прямоугольник</li>
+            </ol>
+        </div>
+
+        <h2>Задание 5: Класс Book с деструктором</h2>
+        <div class="task">
+            <p>Создайте класс <code>Book</code> с использованием деструктора:</p>
+            <ol>
+                <li>Конструктор принимает название, автора и год издания</li>
+                <li>Метод <code>display_info()</code> выводит информацию о книге</li>
+                <li>Деструктор выводит сообщение об удалении книги</li>
+                <li>Создайте функцию, которая создает временные объекты Book</li>
+                <li>Понаблюдайте за вызовом деструкторов</li>
+            </ol>
+        </div>
+
+        <h2>Задание 6: Класс Car с изменением состояния</h2>
+        <div class="task">
+            <p>Создайте класс <code>Car</code>, моделирующий автомобиль:</p>
+            <ol>
+                <li>Конструктор принимает марку, модель и объем бака</li>
+                <li>Атрибут <code>fuel_level</code> показывает текущий уровень топлива</li>
+                <li>Метод <code>refuel(liters)</code> для заправки</li>
+                <li>Метод <code>drive(distance)</code> для поездки (расход 10л/100км)</li>
+                <li>Метод <code>get_fuel_info()</code> возвращает информацию о топливе</li>
+            </ol>
+        </div>
+
+        <h2>Задание 7: Класс ShoppingCart для корзины покупок</h2>
+        <div class="task">
+            <p>Создайте класс <code>ShoppingCart</code> для управления корзиной:</p>
+            <ol>
+                <li>Конструктор создает пустую корзину</li>
+                <li>Метод <code>add_item(name, price, quantity=1)</code> добавляет товар</li>
+                <li>Метод <code>remove_item(name)</code> удаляет товар</li>
+                <li>Метод <code>get_total()</code> вычисляет общую стоимость</li>
+                <li>Метод <code>display_cart()</code> выводит содержимое корзины</li>
+            </ol>
+        </div>
+
+        <h2>Задание 8: Класс Employee с расчетом зарплаты</h2>
+        <div class="task">
+            <p>Создайте класс <code>Employee</code> для работы с сотрудниками:</p>
+            <ol>
+                <li>Конструктор принимает имя, должность и почасовую ставку</li>
+                <li>Метод <code>add_hours(hours)</code> добавляет отработанные часы</li>
+                <li>Метод <code>calculate_salary()</code> вычисляет зарплату</li>
+                <li>Метод <code>reset_hours()</code> сбрасывает счетчик часов</li>
+                <li>Добавьте атрибут для хранения истории выплат</li>
+            </ol>
+        </div>
+
+        <h2>Задание 9: Класс Library для управления библиотекой</h2>
+        <div class="task">
+            <p>Создайте класс <code>Library</code> для управления книгами:</p>
+            <ol>
+                <li>Конструктор создает пустую библиотеку</li>
+                <li>Метод <code>add_book(book)</code> добавляет книгу (объект Book)</li>
+                <li>Метод <code>remove_book(title)</code> удаляет книгу по названию</li>
+                <li>Метод <code>find_books_by_author(author)</code> ищет книги по автору</li>
+                <li>Метод <code>display_books()</code> выводит все книги</li>
+            </ol>
+        </div>
+
+        <h2>Задание 10: Комплексная система - Bank</h2>
+        <div class="task">
+            <p>Создайте систему классов для банка:</p>
+            <ol>
+                <li>Класс <code>Customer</code> с информацией о клиенте</li>
+                <li>Класс <code>Account</code> наследует от BankAccount</li>
+                <li>Класс <code>Bank</code> управляет клиентами и счетами</li>
+                <li>Методы для открытия счета, перевода между счетами</li>
+                <li>Статистика по банку (общая сумма средств и т.д.)</li>
+            </ol>
+        </div>
+
+        <div class="note">
+            <strong>💡 Как выполнять задания:</strong><br>
+            1. Создайте новый файл Python для каждого задания<br>
+            2. Напишите код, решающий задачу<br>
+            3. Проверьте, что код работает правильно<br>
+            4. Сравните ваше решение с ответами для самопроверки
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            Удачи в изучении классов в Python! 🐍
+        </div>
+    </div>
+</body>
+</html>
