@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания по инкапсуляции и свойствам в Python</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+            tab-size: 4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+            margin: 10px 0;
+        }
+        .encapsulation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .encapsulation-table th, .encapsulation-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .encapsulation-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        .encapsulation-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .property-diagram {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+            position: relative;
+        }
+        .property-part {
+            color: #f39c12;
+            position: absolute;
+            right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Практические задания по инкапсуляции и свойствам в Python</h1>
+        
+        <div class="note">
+            <strong>📝 Описание:</strong> Это набор практических заданий по работе с инкапсуляцией, приватными атрибутами и свойствами в Python.
+        </div>
+
+        <h2>Типы доступа к атрибутам</h2>
+        <table class="encapsulation-table">
+            <tr>
+                <th>Тип доступа</th>
+                <th>Синтаксис</th>
+                <th>Описание</th>
+                <th>Пример</th>
+            </tr>
+            <tr>
+                <td>Публичный</td>
+                <td>self.attribute</td>
+                <td>Доступен из любого места</td>
+                <td>self.name = "Tom"</td>
+            </tr>
+            <tr>
+                <td>Приватный</td>
+                <td>self.__attribute</td>
+                <td>Доступен только внутри класса</td>
+                <td>self.__balance = 1000</td>
+            </tr>
+            <tr>
+                <td>Защищенный</td>
+                <td>self._attribute</td>
+                <td>Доступен внутри класса и наследников</td>
+                <td>self._internal_data</td>
+            </tr>
+        </table>
+
+        <h2>Свойства (Properties)</h2>
+        <div class="property-diagram">
+            class BankAccount:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, balance):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.__balance = balance  # Приватный атрибут<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;@property<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def balance(self):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self.__balance  # Геттер<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;@balance.setter<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def balance(self, value):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if value >= 0:  # Валидация в сеттере<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.__balance = value<br>
+            <br>
+            account = BankAccount(1000)<br>
+            print(account.balance)  # 1000 (геттер)<br>
+            account.balance = 1500  # сеттер<br>
+            account.balance = -500  # игнорируется (валидация)
+            <div class="property-part" style="top: 45px;">← Приватный атрибут</div>
+            <div class="property-part" style="top: 90px;">← Геттер</div>
+            <div class="property-part" style="top: 120px;">← Сеттер с валидацией</div>
+        </div>
+
+        <h2>Задание 1: Базовый класс с приватными атрибутами</h2>
+        <div class="task">
+            <p>Создайте класс <code>Person</code> с приватными атрибутами и методами доступа:</p>
+            <ol>
+                <li>Сделайте атрибуты <code>__name</code> и <code>__age</code> приватными</li>
+                <li>Создайте геттеры и сеттеры для этих атрибутов</li>
+                <li>В сеттере для возраста добавьте валидацию (0-150 лет)</li>
+                <li>В сеттере для имени запретите пустые строки</li>
+            </ol>
+        </div>
+
+        <h2>Задание 2: Класс BankAccount с свойствами</h2>
+        <div class="task">
+            <p>Перепишите класс <code>BankAccount</code> с использованием свойств:</p>
+            <ol>
+                <li>Сделайте баланс приватным атрибутом</li>
+                <li>Создайте свойство <code>balance</code> с геттером и сеттером</li>
+                <li>В сеттере запретите отрицательный баланс</li>
+                <li>Добавьте свойство <code>is_overdraft</code> (только геттер)</li>
+                <li>Добавьте свойство <code>currency</code> с фиксированным значением</li>
+            </ol>
+        </div>
+
+        <h2>Задание 3: Класс Student с вычисляемыми свойствами</h2>
+        <div class="task">
+            <p>Создайте класс <code>Student</code> с вычисляемыми свойствами:</p>
+            <ol>
+                <li>Приватные атрибуты: <code>__grades</code> (список оценок)</li>
+                <li>Свойство <code>average_grade</code> (только геттер) - средний балл</li>
+                <li>Свойство <code>best_grade</code> (только геттер) - лучшая оценка</li>
+                <li>Свойство <code>is_excellent</code> (только геттер) - отличник (средний ≥ 4.5)</li>
+                <li>Метод для добавления оценки с валидацией (1-5)</li>
+            </ol>
+        </div>
+
+        <h2>Задание 4: Класс Rectangle с защищенными атрибутами</h2>
+        <div class="task">
+            <p>Создайте класс <code>Rectangle</code> с защищенными атрибутами:</p>
+            <ol>
+                <li>Используйте <code>_width</code> и <code>_height</code></li>
+                <li>Свойства <code>width</code> и <code>height</code> с валидацией (> 0)</li>
+                <li>Свойство <code>area</code> (только геттер) - площадь</li>
+                <li>Свойство <code>perimeter</code> (только геттер) - периметр</li>
+                <li>Свойство <code>is_square</code> (только геттер)</li>
+            </ol>
+        </div>
+
+        <h2>Задание 5: Класс Temperature с конвертацией</h2>
+        <div class="task">
+            <p>Создайте класс <code>Temperature</code> для работы с температурой:</p>
+            <ol>
+                <li>Приватный атрибут <code>__celsius</code></li>
+                <li>Свойство <code>celsius</code> с геттером и сеттером</li>
+                <li>Свойство <code>fahrenheit</code> с геттером и сеттером</li>
+                <li>Свойство <code>kelvin</code> с геттером и сеттером</li>
+                <li>Валидация: температура не может быть ниже абсолютного нуля</li>
+            </ol>
+        </div>
+
+        <h2>Задание 6: Класс Password с валидацией</h2>
+        <div class="task">
+            <p>Создайте класс <code>Password</code> для хранения паролей:</p>
+            <ol>
+                <li>Приватный атрибут <code>__password_hash</code></li>
+                <li>Свойство <code>password</code> только с сеттером</li>
+                <li>При установке пароля хэшируйте его (простой хэш)</li>
+                <li>Метод <code>check_password</code> для проверки пароля</li>
+                <li>Валидация: минимум 8 символов, буквы и цифры</li>
+            </ol>
+        </div>
+
+        <h2>Задание 7: Класс Car с read-only свойствами</h2>
+        <div class="task">
+            <p>Создайте класс <code>Car</code> с read-only свойствами:</p>
+            <ol>
+                <li>Приватные атрибуты: <code>__vin</code>, <code>__manufacture_year</code></li>
+                <li>Свойство <code>vin</code> (только геттер) - идентификационный номер</li>
+                <li>Свойство <code>manufacture_year</code> (только геттер)</li>
+                <li>Свойство <code>age</code> (только геттер) - возраст автомобиля</li>
+                <li>Свойство <code>is_vintage</code> (только геттер) - старше 25 лет</li>
+            </ol>
+        </div>
+
+        <h2>Задание 8: Класс Product с бизнес-логикой</h2>
+        <div class="task">
+            <p>Создайте класс <code>Product</code> с бизнес-логикой в свойствах:</p>
+            <ol>
+                <li>Приватные атрибуты: <code>__price</code>, <code>__discount</code></li>
+                <li>Свойство <code>price</code> с валидацией (> 0)</li>
+                <li>Свойство <code>discount</code> с валидацией (0-100%)</li>
+                <li>Свойство <code>final_price</code> (только геттер) - цена со скидкой</li>
+                <li>Свойство <code>discount_amount</code> (только геттер) - сумма скидки</li>
+            </ol>
+        </div>
+
+        <h2>Задание 9: Класс User с комплексной валидацией</h2>
+        <div class="task">
+            <p>Создайте класс <code>User</code> с комплексной валидацией:</p>
+            <ol>
+                <li>Приватные атрибуты: <code>__email</code>, <code>__username</code></li>
+                <li>Свойство <code>email</code> с валидацией формата email</li>
+                <li>Свойство <code>username</code> с валидацией (3-20 символов, только буквы и цифры)</li>
+                <li>Свойство <code>is_valid</code> (только геттер) - все данные валидны</li>
+                <li>Метод для вывода информации о пользователе</li>
+            </ol>
+        </div>
+
+        <h2>Задание 10: Класс LibraryBook с состоянием</h2>
+        <div class="task">
+            <p>Создайте класс <code>LibraryBook</code> с управлением состоянием:</p>
+            <ol>
+                <li>Приватные атрибуты: <code>__is_available</code>, <code>__borrower</code></li>
+                <li>Свойство <code>is_available</code> (только геттер)</li>
+                <li>Свойство <code>borrower</code> с геттером и сеттером</li>
+                <li>При установке borrower книга становится недоступной</li>
+                <li>Метод <code>return_book</code> для возврата книги</li>
+                <li>Свойство <code>status</code> (только геттер) - текстовый статус</li>
+            </ol>
+        </div>
+
+        <div class="note">
+            <strong>💡 Как выполнять задания:</strong><br>
+            1. Создайте новый файл Python для каждого задания<br>
+            2. Напишите код, решающий задачу<br>
+            3. Проверьте, что код работает правильно<br>
+            4. Сравните ваше решение с ответами для самопроверки
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            Удачи в изучении инкапсуляции и свойств в Python! 🐍
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания по наследованию в Python</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+            tab-size: 4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+            margin: 10px 0;
+        }
+        .inheritance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .inheritance-table th, .inheritance-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .inheritance-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        .inheritance-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .inheritance-diagram {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+            position: relative;
+        }
+        .inheritance-part {
+            color: #f39c12;
+            position: absolute;
+            right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Практические задания по наследованию в Python</h1>
+        
+        <div class="note">
+            <strong>📝 Описание:</strong> Это набор практических заданий по работе с наследованием классов в Python.
+        </div>
+
+        <h2>Типы наследования</h2>
+        <table class="inheritance-table">
+            <tr>
+                <th>Тип наследования</th>
+                <th>Синтаксис</th>
+                <th>Описание</th>
+                <th>Пример</th>
+            </tr>
+            <tr>
+                <td>Простое наследование</td>
+                <td>class Child(Parent):</td>
+                <td>Один родительский класс</td>
+                <td>class Employee(Person):</td>
+            </tr>
+            <tr>
+                <td>Множественное наследование</td>
+                <td>class Child(Parent1, Parent2):</td>
+                <td>Несколько родительских классов</td>
+                <td>class WorkingStudent(Employee, Student):</td>
+            </tr>
+            <tr>
+                <td>Многоуровневое наследование</td>
+                <td>class A(B): class B(C):</td>
+                <td>Цепочка наследования</td>
+                <td>class Manager(Employee)</td>
+            </tr>
+        </table>
+
+        <h2>Схема наследования</h2>
+        <div class="inheritance-diagram">
+            class Person:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, name):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def display_info(self):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Name: {self.name}")<br>
+            <br>
+            class Employee(Person):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def work(self):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"{self.name} works")<br>
+            <br>
+            class Student(Person):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def study(self):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"{self.name} studies")<br>
+            <br>
+            class WorkingStudent(Employee, Student):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;pass<br>
+            <br>
+            ws = WorkingStudent("Tom")<br>
+            ws.display_info()  # Наследуется от Person<br>
+            ws.work()          # Наследуется от Employee<br>
+            ws.study()         # Наследуется от Student
+            <div class="inheritance-part" style="top: 15px;">← Базовый класс</div>
+            <div class="inheritance-part" style="top: 90px;">← Простое наследование</div>
+            <div class="inheritance-part" style="top: 120px;">← Простое наследование</div>
+            <div class="inheritance-part" style="top: 150px;">← Множественное наследование</div>
+        </div>
+
+        <h2>Задание 1: Простое наследование Person → Employee</h2>
+        <div class="task">
+            <p>Создайте иерархию классов с простым наследованием:</p>
+            <ol>
+                <li>Базовый класс <code>Person</code> с именем и методом <code>display_info()</code></li>
+                <li>Класс <code>Employee</code>, наследующий от <code>Person</code></li>
+                <li>Добавьте в <code>Employee</code> атрибут <code>salary</code> и метод <code>work()</code></li>
+                <li>Переопределите <code>display_info()</code> в Employee для вывода зарплаты</li>
+            </ol>
+        </div>
+
+        <h2>Задание 2: Наследование с вызовом конструктора родителя</h2>
+        <div class="task">
+            <p>Создайте иерархию классов с правильным вызовом конструкторов:</p>
+            <ol>
+                <li>Класс <code>Vehicle</code> с атрибутами <code>brand</code> и <code>max_speed</code></li>
+                <li>Класс <code>Car</code>, наследующий от <code>Vehicle</code></li>
+                <li>Добавьте в <code>Car</code> атрибут <code>num_doors</code></li>
+                <li>Используйте <code>super()</code> для вызова конструктора родителя</li>
+                <li>Создайте метод <code>display_info()</code> в каждом классе</li>
+            </ol>
+        </div>
+
+        <h2>Задание 3: Многоуровневое наследование</h2>
+        <div class="task">
+            <p>Создайте цепочку наследования из трех классов:</p>
+            <ol>
+                <li><code>Animal</code> → <code>Mammal</code> → <code>Dog</code></li>
+                <li><code>Animal</code>: атрибут <code>species</code>, метод <code>speak()</code></li>
+                <li><code>Mammal</code>: атрибут <code>fur_color</code>, метод <code>feed_milk()</code></li>
+                <li><code>Dog</code>: атрибут <code>breed</code>, переопределенный метод <code>speak()</code></li>
+                <li>Продемонстрируйте вызов методов через всю цепочку</li>
+            </ol>
+        </div>
+
+        <h2>Задание 4: Множественное наследование</h2>
+        <div class="task">
+            <p>Создайте класс с множественным наследованием:</p>
+            <ol>
+                <li>Класс <code>Writer</code> с методом <code>write()</code></li>
+                <li>Класс <code>Programmer</code> с методом <code>code()</code></li>
+                <li>Класс <code>TechnicalWriter</code>, наследующий от обоих классов</li>
+                <li>Добавьте метод <code>create_documentation()</code></li>
+                <li>Изучите MRO (Method Resolution Order) с помощью <code>__mro__</code></li>
+            </ol>
+        </div>
+
+        <h2>Задание 5: Переопределение методов</h2>
+        <div class="task">
+            <p>Создайте иерархию с переопределением методов:</p>
+            <ol>
+                <li>Класс <code>BankAccount</code> с методами <code>deposit()</code>, <code>withdraw()</code></li>
+                <li>Класс <code>SavingsAccount</code>, наследующий от <code>BankAccount</code></li>
+                <li>Переопределите <code>withdraw()</code> для ограничения снятий</li>
+                <li>Добавьте метод <code>add_interest()</code> в <code>SavingsAccount</code></li>
+                <li>Используйте <code>super()</code> для вызова методов родителя</li>
+            </ol>
+        </div>
+
+        <h2>Задание 6: Абстрактный базовый класс</h2>
+        <div class="task">
+            <p>Создайте иерархию с абстрактными методами:</p>
+            <ol>
+                <li>Класс <code>Shape</code> с абстрактными методами <code>area()</code> и <code>perimeter()</code></li>
+                <li>Классы <code>Rectangle</code> и <code>Circle</code>, наследующие от <code>Shape</code></li>
+                <li>Реализуйте абстрактные методы в дочерних классах</li>
+                <li>Создайте список фигур и вычислите общую площадь</li>
+                <li>Используйте модуль <code>abc</code> для создания абстрактного класса</li>
+            </ol>
+        </div>
+
+        <h2>Задание 7: Наследование и композиция</h2>
+        <div class="task">
+            <p>Создайте систему классов, демонстрирующую разницу между наследованием и композицией:</p>
+            <ol>
+                <li>Класс <code>Engine</code> с методом <code>start()</code></li>
+                <li>Класс <code>Car</code> с композицией (имеет двигатель)</li>
+                <li>Класс <code>ElectricCar</code>, наследующий от <code>Car</code></li>
+                <li>Класс <code>HybridCar</code> с множественным наследованием и композицией</li>
+                <li>Покажите преимущества каждого подхода</li>
+            </ol>
+        </div>
+
+        <h2>Задание 8: Практическая задача - система сотрудников</h2>
+        <div class="task">
+            <p>Создайте систему классов для управления сотрудниками компании:</p>
+            <ol>
+                <li>Базовый класс <code>Employee</code> с общими атрибутами</li>
+                <li>Классы <code>Manager</code>, <code>Developer</code>, <code>Designer</code></li>
+                <li>Метод <code>calculate_salary()</code> с разной логикой для каждого типа</li>
+                <li>Метод <code>get_info()</code> для вывода информации</li>
+                <li>Создайте список сотрудников разных типов</li>
+            </ol>
+        </div>
+
+        <h2>Задание 9: Diamond Problem и MRO</h2>
+        <div class="task">
+            <p>Исследуйте проблему ромбовидного наследования:</p>
+            <ol>
+                <li>Создайте иерархию: A → B, A → C, B → D, C → D</li>
+                <li>Добавьте метод <code>method()</code> в каждый класс</li>
+                <li>Проследите порядок вызовов методов</li>
+                <li>Изучите MRO с помощью <code>ClassName.__mro__</code></li>
+                <li>Объясните, как Python решает проблему ромбовидного наследования</li>
+            </ol>
+        </div>
+
+        <h2>Задание 10: Комплексная система образования</h2>
+        <div class="task">
+            <p>Создайте комплексную систему для образовательного учреждения:</p>
+            <ol>
+                <li>Базовый класс <code>Person</code> с общей информацией</li>
+                <li>Классы <code>Student</code>, <code>Teacher</code>, <code>Staff</code></li>
+                <li>Класс <code>GraduateStudent</code> (студент + сотрудник)</li>
+                <li>Класс <code>Course</code> с композицией (преподаватель, студенты)</li>
+                <li>Методы для управления курсами и участниками</li>
+            </ol>
+        </div>
+
+        <div class="note">
+            <strong>💡 Как выполнять задания:</strong><br>
+            1. Создайте новый файл Python для каждого задания<br>
+            2. Напишите код, решающий задачу<br>
+            3. Проверьте, что код работает правильно<br>
+            4. Сравните ваше решение с ответами для самопроверки
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            Удачи в изучении наследования в Python! 🐍
+        </div>
+    </div>
+</body>
+</html>
