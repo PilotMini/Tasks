@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания по указателям в C++</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f8fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #e67e22;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #e67e22;
+            position: relative;
+        }
+        .task-number {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #e67e22;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+            tab-size: 4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #e67e22;
+            margin: 10px 0;
+        }
+        .pointer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .pointer-table th, .pointer-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .pointer-table th {
+            background-color: #e67e22;
+            color: white;
+        }
+        .pointer-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .pointer-diagram {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+            position: relative;
+        }
+        .pointer-part {
+            color: #f39c12;
+            position: absolute;
+            right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Практические задания по указателям в C++</h1>
+        
+        <div class="note">
+            <strong>📘 На основе материалов сайта metanit.com</strong><br>
+            Темы: объявление указателей, операции с указателями, указатели и массивы, арифметика указателей, указатели и функции, ссылки.
+        </div>
+
+        <h2>Основные понятия об указателях</h2>
+        <table class="pointer-table">
+            <tr>
+                <th>Операция</th>
+                <th>Синтаксис</th>
+                <th>Описание</th>
+                <th>Пример</th>
+            </tr>
+            <tr>
+                <td>Объявление указателя</td>
+                <td>тип* имя;</td>
+                <td>Создание переменной-указателя</td>
+                <td>int* ptr;</td>
+            </tr>
+            <tr>
+                <td>Адрес переменной</td>
+                <td>&переменная</td>
+                <td>Получение адреса переменной</td>
+                <td>ptr = &x;</td>
+            </tr>
+            <tr>
+                <td>Разыменование</td>
+                <td>*указатель</td>
+                <td>Получение значения по адресу</td>
+                <td>cout << *ptr;</td>
+            </tr>
+            <tr>
+                <td>Арифметика указателей</td>
+                <td>ptr + n</td>
+                <td>Смещение на n элементов</td>
+                <td>ptr + 1</td>
+            </tr>
+            <tr>
+                <td>Нулевой указатель</td>
+                <td>nullptr</td>
+                <td>Указатель, не указывающий никуда</td>
+                <td>int* ptr = nullptr;</td>
+            </tr>
+        </table>
+
+        <div class="pointer-diagram">
+            int x = 5;      // переменная x хранит значение 5<br>
+            int* ptr = &x;  // указатель ptr хранит адрес переменной x<br>
+            <br>
+            // В памяти:<br>
+            // x  [  5  ]  по адресу 0x1000<br>
+            // ptr[0x1000] по адресу 0x2000<br>
+            <br>
+            cout << x;      // 5<br>
+            cout << &x;     // 0x1000<br>
+            cout << ptr;    // 0x1000<br>
+            cout << *ptr;   // 5
+            <div class="pointer-part" style="top: 15px;">← переменная</div>
+            <div class="pointer-part" style="top: 45px;">← указатель</div>
+            <div class="pointer-part" style="top: 105px;">← разыменование</div>
+        </div>
+
+        <div class="task">
+            <div class="task-number">1</div>
+            <h3>Базовые операции с указателями</h3>
+            <p>Напишите программу, которая:</p>
+            <ol>
+                <li>Объявляет целочисленную переменную <code>number</code> со значением 42</li>
+                <li>Объявляет указатель на целое число <code>ptr</code></li>
+                <li>Присваивает указателю адрес переменной <code>number</code></li>
+                <li>Выводит на экран:
+                    <ul>
+                        <li>Значение переменной <code>number</code></li>
+                        <li>Адрес переменной <code>number</code> (в шестнадцатеричном формате)</li>
+                        <li>Значение указателя <code>ptr</code> (адрес)</li>
+                        <li>Значение, на которое указывает указатель (через разыменование)</li>
+                        <li>Адрес самого указателя</li>
+                    </ul>
+                </li>
+                <li>Изменяет значение переменной через указатель (присваивает 100)</li>
+                <li>Выводит новое значение переменной</li>
+            </ol>
+            <div class="hint">
+                <strong>Подсказка:</strong> Для вывода адреса используйте <code>cout << (void*)ptr</code> или форматирование <code>hex</code>.
+            </div>
+        </div>
+
+        <div class="task">
+            <div class="task-number">2</div>
+            <h3>Указатели и изменение значений</h3>
+            <p>Создайте программу для обмена значений двух переменных с использованием указателей:</p>
+            <ol>
+                <li>Объявите две переменные <code>a = 10</code> и <code>b = 20</code></li>
+                <li>Объявите два указателя <code>ptrA</code> и <code>ptrB</code></li>
+                <li>Напишите функцию <code>swapWithPointers(int* x, int* y)</code>, которая меняет значения двух переменных местами</li>
+                <li>Вызовите функцию и выведите значения до и после обмена</li>
+                <li>Проверьте работу функции для разных типов данных (int, double)</li>
+            </ol>
+        </div>
+
+        <div class="task">
+            <div class="task-number">3</div>
+            <h3>Указатели и массивы</h3>
+            <p>Работа с массивом через указатели (по материалам metanit.com):</p>
+            <ol>
+                <li>Создайте массив целых чисел <code>arr[] = {5, 10, 15, 20, 25}</code></li>
+                <li>Объявите указатель <code>ptr</code> и присвойте ему адрес первого элемента массива</li>
+                <li>Выведите все элементы массива тремя способами:
+                    <ul>
+                        <li>Через индексацию: <code>arr[i]</code></li>
+                        <li>Через арифметику указателей: <code>*(ptr + i)</code></li>
+                        <li>Через имя массива как указателя: <code>*(arr + i)</code></li>
+                    </ul>
+                </li>
+                <li>Используя указатель, найдите сумму всех элементов массива</li>
+            </ol>
+        </div>
+
+        <div class="task">
+            <div class="task-number">4</div>
+            <h3>Арифметика указателей</h3>
+            <p>Исследуйте особенности арифметики указателей:</p>
+            <ol>
+                <li>Создайте массивы разных типов:
+                    <ul>
+                        <li><code>int intArr[] = {10, 20, 30, 40}</code></li>
+                        <li><code>double doubleArr[] = {1.1, 2.2, 3.3, 4.4}</code></li>
+                        <li><code>char charArr[] = {'A', 'B', 'C', 'D'}</code></li>
+                    </ul>
+                </li>
+                <li>Для каждого массива создайте указатель на первый элемент</li>
+                <li>Выведите адреса элементов и значения при прибавлении 1, 2 к указателю</li>
+                <li>Объясните разницу в смещении для разных типов данных</li>
+            </ol>
+            <div class="output">
+Пример вывода:
+int: ptr = 0x1000, ptr+1 = 0x1004 (смещение 4 байта)
+double: ptr = 0x2000, ptr+1 = 0x2008 (смещение 8 байт)
+char: ptr = 0x3000, ptr+1 = 0x3001 (смещение 1 байт)
+            </div>
+        </div>
+
+        <div class="task">
+            <div class="task-number">5</div>
+            <h3>Указатели и строки (C-style strings)</h3>
+            <p>Работа со строками через указатели:</p>
+            <ol>
+                <li>Создайте C-строку: <code>char str[] = "Hello, World!";</code></li>
+                <li>Объявите указатель <code>char* ptr = str;</code></li>
+                <li>Напишите функции с использованием указателей:
+                    <ul>
+                        <li><code>size_t stringLength(const char* str)</code> - вычисление длины строки</li>
+                        <li><code>void toUpperCase(char* str)</code> - преобразование в верхний регистр</li>
+                        <li><code>void reverseString(char* str)</code> - переворот строки</li>
+                    </ul>
+                </li>
+                <li>Продемонстрируйте работу функций</li>
+            </ol>
+        </div>
+
+        <div class="task">
+            <div class="task-number">6</div>
+            <h3>Указатели на указатели</h3>
+            <p>Работа с многоуровневыми указателями:</p>
+            <ol>
+                <li>Объявите переменную <code>int value = 100</code></li>
+                <li>Объявите указатель <code>int* ptr1 = &value;</code></li>
+                <li>Объявите указатель на указатель <code>int** ptr2 = &ptr1;</code></li>
+                <li>Объявите указатель на указатель на указатель <code>int*** ptr3 = &ptr2;</code></li>
+                <li>Выведите:
+                    <ul>
+                        <li>Значение переменной через каждый уровень</li>
+                        <li>Адреса всех переменных</li>
+                        <li>Значения всех указателей</li>
+                    </ul>
+                </li>
+                <li>Измените значение переменной через <code>ptr3</code></li>
+            </ol>
+        </div>
+
+        <div class="task">
+            <div class="task-number">7</div>
+            <h3>Динамическое выделение памяти</h3>
+            <p>Работа с динамической памятью через операторы new и delete:</p>
+            <ol>
+                <li>Выделите память для одного целого числа и присвойте ему значение</li>
+                <li>Выделите память для массива из 10 целых чисел и заполните его</li>
+                <li>Найдите максимальный элемент в динамическом массиве</li>
+                <li>Создайте функцию для создания динамического массива заданного размера</li>
+                <li>Создайте функцию для освобождения памяти</li>
+                <li>Проверьте утечки памяти (используйте счетчики new/delete)</li>
+            </ol>
+            <div class="hint">
+                <strong>Важно!</strong> Не забывайте освобождать память с помощью delete/delete[].
+            </div>
+        </div>
+
+        <div class="task">
+            <div class="task-number">8</div>
+            <h3>Указатели и функции (параметры по указателю)</h3>
+            <p>Реализуйте следующие функции с использованием указателей:</p>
+            <ol>
+                <li><code>void increment(int* ptr)</code> - увеличивает значение на 1</li>
+                <li><code>bool findInArray(int* arr, int size, int target, int** result)</code> - поиск элемента в массиве, возвращает указатель на найденный элемент через параметр</li>
+                <li><code>void minMax(int* arr, int size, int* min, int* max)</code> - находит минимум и максимум в массиве</li>
+                <li><code>int* createCopy(int* arr, int size)</code> - создает копию массива в динамической памяти</li>
+            </ol>
+        </div>
+
+        <div class="task">
+            <div class="task-number">9</div>
+            <h3>Указатели на функции</h3>
+            <p>Работа с указателями на функции:</p>
+            <ol>
+                <li>Создайте несколько математических функций:
+                    <ul>
+                        <li><code>int add(int a, int b)</code> - сложение</li>
+                        <li><code>int subtract(int a, int b)</code> - вычитание</li>
+                        <li><code>int multiply(int a, int b)</code> - умножение</li>
+                        <li><code>int divide(int a, int b)</code> - деление</li>
+                    </ul>
+                </li>
+                <li>Объявите указатель на функцию соответствующего типа</li>
+                <li>Создайте массив указателей на функции</li>
+                <li>Напишите функцию <code>calculate</code>, которая принимает указатель на функцию и два числа</li>
+                <li>Создайте простое меню для выбора операции</li>
+            </ol>
+        </div>
+
+        <div class="task">
+            <div class="task-number">10</div>
+            <h3>Комплексная задача: динамический массив с функциями</h3>
+            <p>Создайте программу для работы с динамическим массивом:</p>
+            <ol>
+                <li>Функция <code>int* createArray(int size)</code> - создает массив заданного размера</li>
+                <li>Функция <code>void fillArray(int* arr, int size)</code> - заполняет массив случайными числами</li>
+                <li>Функция <code>void printArray(int* arr, int size)</code> - выводит массив</li>
+                <li>Функция <code>int* expandArray(int* arr, int& size, int newSize)</code> - расширяет массив</li>
+                <li>Функция <code>int* insertElement(int* arr, int& size, int element, int position)</code> - вставляет элемент</li>
+                <li>Функция <code>int* removeElement(int* arr, int& size, int position)</code> - удаляет элемент</li>
+                <li>Функция <code>void freeArray(int* arr)</code> - освобождает память</li>
+                <li>Создайте меню для демонстрации всех операций</li>
+            </ol>
+            <div class="output">
+Меню программы:
+1. Создать массив
+2. Заполнить случайными числами
+3. Вывести массив
+4. Расширить массив
+5. Вставить элемент
+6. Удалить элемент
+7. Выход
+            </div>
+        </div>
+
+
+
+        <div class="note">
+            <strong>📚 Материалы для изучения:</strong><br>
+            - <a href="https://metanit.com/cpp/tutorial/4.9.php" style="color: white;">Указатели в C++</a><br>
+            - <a href="https://metanit.com/cpp/tutorial/4.10.php" style="color: white;">Указатели и массивы</a><br>
+            - <a href="https://metanit.com/cpp/tutorial/4.11.php" style="color: white;">Указатели и функции</a><br>
+            - <a href="https://metanit.com/cpp/tutorial/4.12.php" style="color: white;">Динамическое выделение памяти</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            Удачи в изучении указателей в C++! 🚀
+        </div>
+    </div>
+</body>
+</html>
