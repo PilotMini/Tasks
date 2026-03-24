@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания по функциям в C++</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #eee;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            position: relative;
+        }
+        .task-number {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+            tab-size: 4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+            margin: 10px 0;
+        }
+        .function-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .function-table th, .function-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .function-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        .function-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .signature {
+            background: #2c3e50;
+            color: #f39c12;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-family: monospace;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .level {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .level-basic { background: #27ae60; color: white; }
+        .level-medium { background: #f39c12; color: white; }
+        .level-advanced { background: #e74c3c; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Практические задания по функциям в C++</h1>
+        
+        <div class="note">
+            <strong>📘 Темы:</strong> Определение функций, параметры, возвращаемые значения, перегрузка функций, рекурсия, inline-функции.
+        </div>
+
+        <h2>Структура функции</h2>
+        <div class="code">
+тип_возврата имя_функции(список_параметров) {
+    // тело функции
+    return значение;
+}
+        </div>
+
+        <div class="task">
+            <div class="task-number">1</div>
+            <h3>Базовые математические функции <span class="level level-basic">БАЗОВЫЙ</span></h3>
+            <p>Создайте набор функций для выполнения различных математических операций:</p>
+            <ol>
+                <li>Функция <code>int power(int base, int exponent)</code> - возведение числа в степень (без использования <code>pow</code>)</li>
+                <li>Функция <code>int factorial(int n)</code> - вычисление факториала числа</li>
+                <li>Функция <code>bool isPrime(int n)</code> - проверка, является ли число простым</li>
+                <li>Функция <code>int gcd(int a, int b)</code> - нахождение наибольшего общего делителя (алгоритм Евклида)</li>
+                <li>Функция <code>int lcm(int a, int b)</code> - нахождение наименьшего общего кратного</li>
+                <li>В главной функции (<code>main</code>) создайте меню для выбора и тестирования каждой функции</li>
+            </ol>
+            <div class="hint">
+                <strong>Подсказка:</strong> Факториал определен только для неотрицательных целых чисел. Для рекурсивной реализации <code>factorial</code> можете использовать рекурсию.
+            </div>
+        </div>
+
+        <div class="task">
+            <div class="task-number">2</div>
+            <h3>Работа с массивами через функции <span class="level level-medium">СРЕДНИЙ</span></h3>
+            <p>Реализуйте набор функций для работы с одномерными массивами:</p>
+            <ol>
+                <li><code>void fillArray(int arr[], int size, int minVal, int maxVal)</code> - заполнение массива случайными числами</li>
+                <li><code>void printArray(const int arr[], int size)</code> - вывод массива на экран</li>
+                <li><code>int findMax(const int arr[], int size)</code> - поиск максимального элемента</li>
+                <li><code>int findMin(const int arr[], int size)</code> - поиск минимального элемента</li>
+                <li><code>int findIndex(const int arr[], int size, int value)</code> - поиск индекса элемента по значению</li>
+                <li><code>void sortArray(int arr[], int size)</code> - сортировка массива по возрастанию (пузырьковая сортировка)</li>
+                <li><code>int calculateSum(const int arr[], int size)</code> - вычисление суммы элементов</li>
+                <li><code>double calculateAverage(const int arr[], int size)</code> - вычисление среднего арифметического</li>
+                <li><code>void reverseArray(int arr[], int size)</code> - переворот массива</li>
+                <li>В главной функции создайте массив, продемонстрируйте работу всех функций</li>
+            </ol>
+        </div>
+
+        <div class="task">
+            <div class="task-number">3</div>
+            <h3>Перегрузка функций <span class="level level-medium">СРЕДНИЙ</span></h3>
+            <p>Создайте перегруженные функции для различных типов данных:</p>
+            <ol>
+                <li>Функция <code>maxValue</code>:
+                    <ul>
+                        <li><code>int maxValue(int a, int b)</code> - возвращает большее из двух целых чисел</li>
+                        <li><code>double maxValue(double a, double b)</code> - возвращает большее из двух вещественных чисел</li>
+                        <li><code>char maxValue(char a, char b)</code> - возвращает больший символ (по ASCII)</li>
+                    </ul>
+                </li>
+                <li>Функция <code>print</code>:
+                    <ul>
+                        <li><code>void print(int value)</code> - выводит целое число</li>
+                        <li><code>void print(double value, int precision = 2)</code> - выводит вещественное число с заданной точностью</li>
+                        <li><code>void print(const char* str)</code> - выводит строку</li>
+                        <li><code>void print(const int arr[], int size)</code> - выводит массив</li>
+                    </ul>
+                </li>
+                <li>Функция <code>area</code>:
+                    <ul>
+                        <li><code>double area(double radius)</code> - площадь круга</li>
+                        <li><code>double area(double length, double width)</code> - площадь прямоугольника</li>
+                        <li><code>double area(double base, double height, bool isTriangle)</code> - площадь треугольника</li>
+                    </ul>
+                </li>
+                <li>Продемонстрируйте вызов каждой перегруженной функции</li>
+            </ol>
+        </div>
+
+        <div class="task">
+            <div class="task-number">4</div>
+            <h3>Рекурсивные функции <span class="level level-advanced">ПРОДВИНУТЫЙ</span></h3>
+            <p>Реализуйте следующие рекурсивные функции:</p>
+            <ol>
+                <li><code>int fibonacci(int n)</code> - вычисление n-го числа Фибоначчи (рекурсивно)</li>
+                <li><code>int sumDigits(int n)</code> - сумма цифр числа (рекурсивно)</li>
+                <li><code>bool isPalindrome(const char* str, int start, int end)</code> - проверка строки на палиндром</li>
+                <li><code>void towerOfHanoi(int n, char from, char to, char aux)</code> - решение задачи "Ханойские башни"</li>
+                <li><code>int binarySearch(const int arr[], int left, int right, int target)</code> - бинарный поиск (рекурсивный)</li>
+                <li><code>void printReverse(const char* str)</code> - вывод строки в обратном порядке (рекурсивно)</li>
+                <li><code>int powerRecursive(int base, int exponent)</code> - возведение в степень (рекурсивно)</li>
+                <li>В главной функции протестируйте каждую рекурсивную функцию</li>
+            </ol>
+            <div class="output">
+Пример вывода для "Ханойских башен" (n=3):
+Переместить диск 1 с A на C
+Переместить диск 2 с A на B
+Переместить диск 1 с C на B
+Переместить диск 3 с A на C
+Переместить диск 1 с B на A
+Переместить диск 2 с B на C
+Переместить диск 1 с A на C
+            </div>
+        </div>
+
+        <div class="task">
+            <div class="task-number">5</div>
+            <h3>Комплексное задание: Система управления студентами <span class="level level-advanced">ПРОДВИНУТЫЙ</span></h3>
+            <p>Создайте программу для управления данными студентов, используя функции:</p>
+            
+            <h4>Структура данных:</h4>
+            <div class="code">
+struct Student {
+    char name[50];
+    int id;
+    int grades[5];      // оценки по 5 предметам
+    double average;
+};
+            </div>
+            
+            <h4>Требуемые функции:</h4>
+            <ol>
+                <li><code>void addStudent(Student students[], int& count)</code> - добавление нового студента</li>
+                <li><code>void displayStudent(const Student& s)</code> - вывод информации о студенте</li>
+                <li><code>void displayAllStudents(const Student students[], int count)</code> - вывод всех студентов</li>
+                <li><code>void calculateAverage(Student& s)</code> - вычисление среднего балла студента</li>
+                <li><code>void calculateAllAverages(Student students[], int count)</code> - вычисление средних баллов для всех студентов</li>
+                <li><code>void sortByAverage(Student students[], int count)</code> - сортировка студентов по среднему баллу</li>
+                <li><code>void sortByName(Student students[], int count)</code> - сортировка студентов по имени</li>
+                <li><code>Student* findById(const Student students[], int count, int id)</code> - поиск студента по ID</li>
+                <li><code>Student* findByName(const Student students[], int count, const char* name)</code> - поиск студента по имени</li>
+                <li><code>void removeStudent(Student students[], int& count, int id)</code> - удаление студента по ID</li>
+                <li><code>void updateStudent(Student students[], int count, int id)</code> - обновление данных студента</li>
+                <li><code>void getTopStudents(const Student students[], int count, Student top[], int& topCount, int n)</code> - получение n лучших студентов</li>
+                <li><code>void getFailedStudents(const Student students[], int count, Student failed[], int& failedCount)</code> - студенты с неудовлетворительными оценками</li>
+                <li><code>void saveToFile(const Student students[], int count, const char* filename)</code> - сохранение данных в файл</li>
+                <li><code>void loadFromFile(Student students[], int& count, const char* filename)</code> - загрузка данных из файла</li>
+            </ol>
+            
+            <h4>Меню программы:</h4>
+            <div class="output">
+========================================
+    СИСТЕМА УПРАВЛЕНИЯ СТУДЕНТАМИ
+========================================
+1. Добавить студента
+2. Показать всех студентов
+3. Найти студента по ID
+4. Найти студента по имени
+5. Удалить студента
+6. Обновить данные студента
+7. Показать лучших студентов
+8. Показать неуспевающих студентов
+9. Сортировать по среднему баллу
+10. Сортировать по имени
+11. Сохранить в файл
+12. Загрузить из файла
+0. Выход
+            </div>
+            
+            <div class="hint">
+                <strong>Рекомендации:</strong>
+                <ul>
+                    <li>Используйте <code>std::string</code> для работы со строками (подключите <code>#include &lt;string&gt;</code>)</li>
+                    <li>Для ввода строк с пробелами используйте <code>cin.getline()</code> или <code>getline()</code></li>
+                    <li>При работе с файлами используйте <code>#include &lt;fstream&gt;</code></li>
+                    <li>Не забывайте проверять границы массивов</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>💡 Как выполнять задания:</strong><br>
+            1. Создайте новый файл с расширением .cpp для каждого задания<br>
+            2. Напишите код, решающий задачу<br>
+            3. Скомпилируйте программу (g++ имя_файла.cpp -o имя_программы)<br>
+            4. Запустите программу и проверьте её работу<br>
+            5. Сравните ваше решение с ответами для самопроверки
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            Удачи в изучении функций в C++! 🚀
+        </div>
+    </div>
+</body>
+</html>
