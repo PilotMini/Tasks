@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания по функциям в C++ - Metanit</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #e67e22;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid #e67e22;
+            position: relative;
+        }
+        .task-number {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            background: #e67e22;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #e67e22;
+            margin: 10px 0;
+        }
+        .topic-badge {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Практические задания по функциям в C++</h1>
+        
+        <div class="note">
+            📘 <strong>Источник:</strong> Материалы с сайта Metanit.com<br>
+            📚 <strong>Темы:</strong> Параметры функций, передача по значению и по ссылке, константные параметры, оператор return, указатели в параметрах
+        </div>
+
+        <!-- Задание 1 -->
+        <div class="task">
+            <div class="task-number">1</div>
+            <h3><span class="topic-badge">Параметры функций</span> Калькулятор с параметрами по умолчанию</h3>
+            <p>Создайте программу, которая:</p>
+            <ol>
+                <li>Реализует функцию <code>double calculate(double a, double b, char op = '+')</code>, которая выполняет арифметическую операцию над числами <code>a</code> и <code>b</code>.</li>
+                <li>Параметр <code>op</code> может принимать значения <code>'+'</code>, <code>'-'</code>, <code>'*'</code>, <code>'/'</code>.</li>
+                <li>Если операция не указана, выполняется сложение.</li>
+                <li>В функции <code>main()</code> продемонстрируйте работу функции с разным количеством аргументов.</li>
+                <li>Обработайте случай деления на ноль (верните <code>0.0</code> и выведите сообщение об ошибке).</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Подсказка из урока:</strong> Параметры со значениями по умолчанию должны идти после обязательных параметров.
+            </div>
+            <div class="output">
+Пример вывода:
+2 + 3 = 5
+10 - 4 = 6
+5 * 6 = 30
+15 / 3 = 5
+15 / 0 = Ошибка: деление на ноль! Результат: 0
+            </div>
+        </div>
+
+        <!-- Задание 2 -->
+        <div class="task">
+            <div class="task-number">2</div>
+            <h3><span class="topic-badge">Передача по значению и по ссылке</span> Обмен значений</h3>
+            <p>Напишите программу, которая:</p>
+            <ol>
+                <li>Реализует три функции для обмена значениями двух переменных:
+                    <ul>
+                        <li><code>void swapByValue(int a, int b)</code> — передача по значению</li>
+                        <li><code>void swapByReference(int& a, int& b)</code> — передача по ссылке</li>
+                        <li><code>void swapByPointer(int* a, int* b)</code> — передача через указатели</li>
+                    </ul>
+                </li>
+                <li>В функции <code>main()</code> создайте две переменные <code>x = 10</code>, <code>y = 20</code>.</li>
+                <li>Покажите результат каждой функции до и после вызова.</li>
+                <li>Объясните, почему только две последние функции реально меняют значения переменных.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Из урока:</strong> При передаче по значению функция получает копию, поэтому изменения не влияют на оригинал. Ссылки и указатели позволяют изменять оригинальные переменные.
+            </div>
+        </div>
+
+        <!-- Задание 3 -->
+        <div class="task">
+            <div class="task-number">3</div>
+            <h3><span class="topic-badge">Константные параметры</span> Безопасный вывод</h3>
+            <p>Создайте программу, которая:</p>
+            <ol>
+                <li>Реализует функцию <code>void printInfo(const std::string& name, const int& age)</code>, которая выводит информацию о человеке.</li>
+                <li>Параметры должны быть константными ссылками.</li>
+                <li>Попробуйте внутри функции изменить значение параметра и убедитесь, что компилятор выдаёт ошибку.</li>
+                <li>В функции <code>main()</code> создайте переменные <code>userName = "Alice"</code> и <code>userAge = 25</code>.</li>
+                <li>Передайте их в функцию и выведите результат.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Из урока:</strong> Константные ссылки используются для передачи больших объектов без копирования, гарантируя, что они не будут изменены.
+            </div>
+            <div class="output">
+Пример вывода:
+Имя: Alice, Возраст: 25
+            </div>
+        </div>
+
+        <!-- Задание 4 -->
+        <div class="task">
+            <div class="task-number">4</div>
+            <h3><span class="topic-badge">Оператор return</span> Поиск минимума и максимума</h3>
+            <p>Напишите программу, которая:</p>
+            <ol>
+                <li>Реализует функцию <code>auto findMinMax(const int arr[], int size, int& min, int& max) -> int</code>, которая:
+                    <ul>
+                        <li>Находит минимальный и максимальный элементы в массиве</li>
+                        <li>Возвращает через ссылки <code>min</code> и <code>max</code> найденные значения</li>
+                        <li>Возвращает сумму всех элементов массива как результат функции</li>
+                    </ul>
+                </li>
+                <li>В функции <code>main()</code> создайте массив из 5 целых чисел, введённых пользователем.</li>
+                <li>Вызовите функцию и выведите минимум, максимум и сумму.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Из урока:</strong> Функция может возвращать одно значение через <code>return</code>, а остальные — через параметры по ссылке.
+            </div>
+            <div class="output">
+Пример ввода/вывода:
+Введите 5 чисел: 3 7 1 9 4
+Минимум: 1
+Максимум: 9
+Сумма: 24
+            </div>
+        </div>
+
+        <!-- Задание 5 -->
+        <div class="task">
+            <div class="task-number">5</div>
+            <h3><span class="topic-badge">Указатели в параметрах</span> Динамический массив</h3>
+            <p>Создайте программу для работы с динамическим массивом:</p>
+            <ol>
+                <li>Функция <code>int* createArray(int size)</code> — выделяет память под массив и возвращает указатель.</li>
+                <li>Функция <code>void fillArray(int* arr, int size)</code> — заполняет массив случайными числами.</li>
+                <li>Функция <code>void printArray(const int* arr, int size)</code> — выводит массив.</li>
+                <li>Функция <code>void resizeArray(int*& arr, int& size, int newSize)</code> — изменяет размер массива (с сохранением старых элементов).</li>
+                <li>Функция <code>void deleteArray(int* arr)</code> — освобождает память.</li>
+                <li>В <code>main()</code> продемонстрируйте работу всех функций.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Из урока:</strong> Указатели в параметрах позволяют изменять сами указатели (например, при перевыделении памяти), поэтому используется <code>int*& arr</code>.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
