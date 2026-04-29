@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания: Указатели на функции и указатели как параметры в C++</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #e67e22;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid #e67e22;
+            position: relative;
+        }
+        .task-number {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            background: #e67e22;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #e67e22;
+            margin: 10px 0;
+        }
+        .topic-badge {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Указатели на функции и указатели как параметры в C++</h1>
+        
+        <div class="note">
+            📘 <strong>Темы заданий:</strong><br>
+            • Объявление и использование указателей на функции<br>
+            • Передача указателей на функции в качестве аргументов<br>
+            • Использование указателей на функции для создания callback-механизмов<br>
+            • Указатели на функции как параметры других функций<br>
+            • Массивы указателей на функции
+        </div>
+
+        <!-- Задание 1 -->
+        <div class="task">
+            <div class="task-number">1</div>
+            <h3><span class="topic-badge">Указатели на функции</span> Калькулятор с выбором операции</h3>
+            <p>Создайте программу, которая:</p>
+            <ol>
+                <li>Реализует четыре математические функции: <code>add</code>, <code>subtract</code>, <code>multiply</code>, <code>divide</code>.</li>
+                <li>Объявите указатель на функцию, который может указывать на любую из этих функций.</li>
+                <li>В функции <code>main()</code> создайте меню для выбора операции (1-4).</li>
+                <li>В зависимости от выбора, присвойте указателю соответствующую функцию и выполните вычисления с двумя числами, введёнными пользователем.</li>
+                <li>Выведите результат на экран.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Синтаксис:</strong> <code>int (*operation)(int, int);</code> — указатель на функцию, принимающую два <code>int</code> и возвращающую <code>int</code>.
+            </div>
+            <div class="output">
+Пример работы:
+Введите два числа: 10 5
+Выберите операцию:
+1 - Сложение
+2 - Вычитание
+3 - Умножение
+4 - Деление
+Ваш выбор: 1
+Результат: 10 + 5 = 15
+            </div>
+        </div>
+
+        <!-- Задание 2 -->
+        <div class="task">
+            <div class="task-number">2</div>
+            <h3><span class="topic-badge">Callback-функции</span> Обработка массива</h3>
+            <p>Напишите программу, которая:</p>
+            <ol>
+                <li>Реализует функцию <code>void processArray(int* arr, int size, void (*processor)(int&))</code>, которая применяет переданную функцию-обработчик к каждому элементу массива.</li>
+                <li>Реализуйте несколько функций-обработчиков:
+                    <ul>
+                        <li><code>increment(int& x)</code> — увеличивает значение на 1</li>
+                        <li><code>square(int& x)</code> — возводит в квадрат</li>
+                        <li><code>negate(int& x)</code> — меняет знак на противоположный</li>
+                    </ul>
+                </li>
+                <li>В <code>main()</code> создайте массив из 5 целых чисел, выведите исходный массив, затем последовательно примените каждый обработчик, выводя результат после каждой операции.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Callback (обратный вызов)</strong> — это функция, которая передаётся в другую функцию для последующего вызова.
+            </div>
+            <div class="output">
+Пример вывода:
+Исходный массив: 1 2 3 4 5
+После increment: 2 3 4 5 6
+После square: 4 9 16 25 36
+После negate: -4 -9 -16 -25 -36
+            </div>
+        </div>
+
+        <!-- Задание 3 -->
+        <div class="task">
+            <div class="task-number">3</div>
+            <h3><span class="topic-badge">Массив указателей на функции</span> Меню операций</h3>
+            <p>Создайте программу, которая:</p>
+            <ol>
+                <li>Реализует 6 арифметических операций: сложение, вычитание, умножение, деление, остаток от деления, возведение в степень.</li>
+                <li>Создайте массив указателей на функции, содержащий все эти операции.</li>
+                <li>В <code>main()</code> предложите пользователю выбрать операцию (1-6), ввести два числа и вычислить результат, вызывая соответствующую функцию из массива.</li>
+                <li>Если пользователь выбирает деление или остаток от деления, проверьте, что второе число не равно нулю.</li>
+                <li>Реализуйте функцию для возведения в степень (целые числа, без использования <code>pow</code>).</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Массив указателей:</strong> <code>int (*operations[6])(int, int) = {add, sub, mul, div, mod, pow};</code>
+            </div>
+        </div>
+
+        <!-- Задание 4 -->
+        <div class="task">
+            <div class="task-number">4</div>
+            <h3><span class="topic-badge">Указатель на функцию как параметр</span> Поиск в массиве</h3>
+            <p>Напишите программу, которая:</p>
+            <ol>
+                <li>Реализует функцию <code>int* findFirst(int* arr, int size, bool (*predicate)(int))</code>, которая:
+                    <ul>
+                        <li>Принимает указатель на функцию-предикат, проверяющую условие</li>
+                        <li>Возвращает указатель на первый элемент, удовлетворяющий условию</li>
+                        <li>Если элемент не найден, возвращает <code>nullptr</code></li>
+                    </ul>
+                </li>
+                <li>Реализуйте несколько функций-предикатов:
+                    <ul>
+                        <li><code>isEven(int x)</code> — проверяет, чётное ли число</li>
+                        <li><code>isPositive(int x)</code> — проверяет, положительное ли число</li>
+                        <li><code>isGreaterThan10(int x)</code> — проверяет, больше ли число 10</li>
+                    </ul>
+                </li>
+                <li>В <code>main()</code> создайте массив и протестируйте поиск с разными предикатами.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Предикат</strong> — это функция, возвращающая <code>bool</code>. Используется для проверки условий.
+            </div>
+            <div class="output">
+Пример вывода:
+Массив: 3 7 12 5 8
+Первый чётный элемент: 12 (индекс 2)
+Первый положительный: 3 (индекс 0)
+Первый больше 10: 12 (индекс 2)
+            </div>
+        </div>
+
+        <!-- Задание 5 -->
+        <div class="task">
+            <div class="task-number">5</div>
+            <h3><span class="topic-badge">Указатели на функции высшего порядка</span> Генератор математических таблиц</h3>
+            <p>Создайте комплексную программу, которая:</p>
+            <ol>
+                <li>Реализует функцию <code>void generateTable(int start, int end, int (*func)(int))</code>, которая:
+                    <ul>
+                        <li>Выводит таблицу значений функции <code>func</code> для чисел от <code>start</code> до <code>end</code> включительно</li>
+                        <li>Формат вывода: <code>X → func(X)</code></li>
+                    </ul>
+                </li>
+                <li>Реализуйте несколько математических функций:
+                    <ul>
+                        <li><code>int square(int x)</code> — x²</li>
+                        <li><code>int cube(int x)</code> — x³</li>
+                        <li><code>int factorial(int x)</code> — факториал (только для x ≤ 10)</li>
+                        <li><code>int fibonacci(int x)</code> — число Фибоначчи</li>
+                    </ul>
+                </li>
+                <li>Создайте массив указателей на эти функции.</li>
+                <li>В <code>main()</code> предложите пользователю:
+                    <ul>
+                        <li>Выбрать функцию из меню</li>
+                        <li>Ввести диапазон (начало и конец)</li>
+                        <li>Отобразить сгенерированную таблицу</li>
+                    </ul>
+                </li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Функции высшего порядка</strong> — функции, которые принимают другие функции как аргументы или возвращают их.
+            </div>
+            <div class="output">
+Пример вывода (для функции square, диапазон 1-5):
+1 → 1
+2 → 4
+3 → 9
+4 → 16
+5 → 25
+            </div>
+        </div>
+
+        <div class="note">
+            💡 <strong>Важные моменты:</strong>
+            <ul>
+                <li>Указатели на функции позволяют передавать поведение как параметр (стратегии, callback-механизмы).</li>
+                <li>Синтаксис: <code>тип_возврата (*имя_указателя)(список_параметров)</code>.</li>
+                <li>Можно создавать массивы указателей на функции для реализации меню и диспетчеризации вызовов.</li>
+                <li>Указатели на функции активно используются в алгоритмах стандартной библиотеки C++ (например, <code>std::sort</code> с компаратором).</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            🚀 Удачи в освоении указателей на функции в C++!<br>
+            <span style="font-size: 12px;">Эти задания помогут понять механизмы callback и функций высшего порядка</span>
+        </div>
+    </div>
+</body>
+</html>
