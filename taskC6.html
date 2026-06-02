@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания: Массивы в параметрах функций в C++</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #e67e22;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .task {
+            background: #e8f4fc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid #e67e22;
+            position: relative;
+        }
+        .task-number {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            background: #e67e22;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+        .answers {
+            background: #27ae60;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #219652;
+            margin: -20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .answer {
+            background: #2ecc71;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .note {
+            background: #f39c12;
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .hint {
+            background: #d6eaf8;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #e67e22;
+            margin: 10px 0;
+        }
+        .topic-badge {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #e67e22;
+            color: white;
+        }
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Массивы в параметрах функций в C++</h1>
+        
+        <div class="note">
+            📘 <strong>Способы передачи массивов в функции:</strong><br>
+            • <code>void func(int arr[], int size)</code> — классический способ<br>
+            • <code>void func(int* arr, int size)</code> — через указатель<br>
+            • <code>void func(int arr[10])</code> — с указанием фиксированного размера<br>
+            • <code>void func(const int arr[], int size)</code> — константный массив<br>
+            • <code>void func(int (&arr)[10])</code> — ссылка на массив фиксированного размера
+        </div>
+
+        <h2>Способы передачи массивов в функции</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Способ</th>
+                <th>Синтаксис</th>
+                <th>Передача массива</th>
+                <th>Изменение оригинала</th>
+            </tr>
+            <tr>
+                <td>Как массив</td>
+                <td>void f(int arr[], int n)</td>
+                <td>по адресу</td>
+                <td>да</td>
+            </tr>
+            <tr>
+                <td>Как указатель</td>
+                <td>void f(int* arr, int n)</td>
+                <td>по значению (копия указателя)</td>
+                <td>да (через разыменование)</td>
+            </tr>
+            <tr>
+                <td>Как ссылка на массив</td>
+                <td>void f(int (&arr)[10])</td>
+                <td>по ссылке</td>
+                <td>да</td>
+            </tr>
+            <tr>
+                <td>Константный массив</td>
+                <td>void f(const int arr[], int n)</td>
+                <td>по адресу</td>
+                <td>нет</td>
+            </tr>
+        </table>
+
+        <!-- Задание 1 -->
+        <div class="task">
+            <div class="task-number">1</div>
+            <h3><span class="topic-badge">Стандартный массив</span> Анализ успеваемости</h3>
+            <p>Создайте программу для анализа оценок студентов:</p>
+            <ol>
+                <li>Реализуйте функцию <code>void analyzeScores(const int scores[], int size, double& average, int& max, int& min)</code>, которая:
+                    <ul>
+                        <li>Вычисляет среднее арифметическое всех оценок</li>
+                        <li>Находит максимальную и минимальную оценку</li>
+                        <li>Возвращает результаты через ссылки</li>
+                    </ul>
+                </li>
+                <li>Реализуйте функцию <code>int countAboveAverage(const int scores[], int size, double average)</code>, которая считает количество оценок выше среднего.</li>
+                <li>В функции <code>main()</code> создайте массив оценок (размер 10), заполните его вводом пользователя.</li>
+                <li>Выведите результаты анализа.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>При передаче массива:</strong> <code>const int scores[]</code> — массив не будет изменён внутри функции.
+            </div>
+            <div class="output">
+Пример ввода/вывода:
+Введите 10 оценок: 5 4 5 3 5 4 4 5 3 4
+Средний балл: 4.2
+Максимум: 5
+Минимум: 3
+Количество оценок выше среднего: 6
+            </div>
+        </div>
+
+        <!-- Задание 2 -->
+        <div class="task">
+            <div class="task-number">2</div>
+            <h3><span class="topic-badge">Указатель на массив</span> Объединение и сортировка</h3>
+            <p>Напишите программу, которая:</p>
+            <ol>
+                <li>Реализует функцию <code>void mergeArrays(const int* arr1, int size1, const int* arr2, int size2, int* result, int& resultSize)</code> — объединяет два отсортированных массива в один отсортированный.</li>
+                <li>Реализует функцию <code>void sortArray(int* arr, int size)</code> — сортирует массив по возрастанию (любым алгоритмом).</li>
+                <li>Реализует функцию <code>void printArray(const int* arr, int size)</code> — выводит массив.</li>
+                <li>В <code>main()</code> создайте два массива, заполните их случайными числами, отсортируйте каждый, затем объедините и выведите результат.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Указатели и массивы:</strong> Имя массива — это указатель на его первый элемент. <code>int* arr</code> и <code>int arr[]</code> в параметрах функций эквивалентны.
+            </div>
+            <div class="output">
+Пример вывода:
+Массив 1: 2 5 7 9
+Массив 2: 1 3 6 8 10
+Результат слияния: 1 2 3 5 6 7 8 9 10
+            </div>
+        </div>
+
+        <!-- Задание 3 -->
+        <div class="task">
+            <div class="task-number">3</div>
+            <h3><span class="topic-badge">Ссылка на массив</span> Работа с матрицами</h3>
+            <p>Создайте программу для работы с матрицей 3×3:</p>
+            <ol>
+                <li>Реализуйте функцию <code>void inputMatrix(int (&matrix)[3][3])</code> — заполняет матрицу значениями от 1 до 9 (или вводом пользователя).</li>
+                <li>Реализуйте функцию <code>void printMatrix(const int (&matrix)[3][3])</code> — выводит матрицу на экран в виде таблицы.</li>
+                <li>Реализуйте функцию <code>void transposeMatrix(int (&matrix)[3][3])</code> — транспонирует матрицу (меняет строки и столбцы).</li>
+                <li>Реализуйте функцию <code>int sumDiagonal(const int (&matrix)[3][3])</code> — возвращает сумму элементов главной диагонали.</li>
+                <li>В <code>main()</code> продемонстрируйте работу всех функций.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Ссылка на массив:</strong> <code>int (&matrix)[3][3]</code> — передача массива по ссылке, размер строго фиксирован.
+            </div>
+            <div class="output">
+Пример вывода:
+Исходная матрица:
+1 2 3
+4 5 6
+7 8 9
+Транспонированная матрица:
+1 4 7
+2 5 8
+3 6 9
+Сумма диагонали: 15
+            </div>
+        </div>
+
+        <!-- Задание 4 -->
+        <div class="task">
+            <div class="task-number">4</div>
+            <h3><span class="topic-badge">Динамические массивы</span> Библиотека книг</h3>
+            <p>Создайте программу для управления библиотекой книг:</p>
+            <ol>
+                <li>Структура <code>struct Book { char title[50]; char author[50]; int year; };</code></li>
+                <li>Функция <code>void addBook(Book*& library, int& count)</code> — добавляет новую книгу (увеличивает массив динамически).</li>
+                <li>Функция <code>void removeBook(Book*& library, int& count, int index)</code> — удаляет книгу по индексу.</li>
+                <li>Функция <code>void displayBooks(const Book* library, int count)</code> — выводит все книги.</li>
+                <li>Функция <code>void findBooksByAuthor(const Book* library, int count, const char* author)</code> — ищет книги по автору.</li>
+                <li>В <code>main()</code> создайте меню для тестирования всех операций.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Динамический массив:</strong> используйте <code>new Book[count]</code> и <code>delete[]</code>.<br>
+                <strong>Важно:</strong> При добавлении/удалении создавайте новый массив нужного размера и копируйте данные.
+            </div>
+        </div>
+
+        <!-- Задание 5 -->
+        <div class="task">
+            <div class="task-number">5</div>
+            <h3><span class="topic-badge">Многомерные массивы</span> Матричные операции</h3>
+            <p>Создайте программу для выполнения операций над матрицами:</p>
+            <ol>
+                <li>Реализуйте функцию <code>void multiplyMatrices(const int A[][3], const int B[][3], int result[][3], int rows, int cols)</code> — умножение двух матриц.</li>
+                <li>Реализуйте функцию <code>void addMatrices(const int A[][3], const int B[][3], int result[][3], int rows, int cols)</code> — сложение матриц.</li>
+                <li>Реализуйте функцию <code>void scalarMultiply(int matrix[][3], int scalar, int rows, int cols)</code> — умножение матрицы на скаляр.</li>
+                <li>В <code>main()</code> создайте две матрицы 2×3 и 3×2 для демонстрации умножения, а также несколько квадратных матриц для сложения и умножения на скаляр.</li>
+                <li>Выводите результаты на экран с помощью функции <code>printMatrix</code>.</li>
+            </ol>
+            <div class="hint">
+                💡 <strong>Многомерные массивы в параметрах:</strong> <code>int matrix[][3]</code> — необходимо указать размер второго измерения, чтобы компилятор мог вычислить смещение.
+            </div>
+            <div class="output">
+Пример вывода:
+Матрица A:
+1 2 3
+4 5 6
+Матрица B:
+7 8
+9 10
+11 12
+Результат A * B:
+58 64
+139 154
+            </div>
+        </div>
+
+        <div class="note">
+            💡 <strong>Важные моменты при работе с массивами в функциях:</strong>
+            <ul>
+                <li>При передаче массива в функцию всегда передаётся указатель на его первый элемент (массив не копируется).</li>
+                <li>Размер массива необходимо передавать отдельным параметром, так как функция не может его определить автоматически.</li>
+                <li>Использование <code>const</code> для параметра-массива гарантирует, что функция не изменит его содержимое.</li>
+                <li>Для передачи многомерных массивов необходимо указать размер всех измерений, кроме первого (или использовать указатели).</li>
+                <li>Ссылки на массивы (<code>int (&arr)[10]</code>) сохраняют информацию о размере массива, но требуют точного соответствия размера при вызове.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #7f8c8d;">
+            🚀 Удачи в освоении работы с массивами в функциях C++!<br>
+            <span style="font-size: 12px;">Эти задания помогут понять особенности передачи массивов в функции</span>
+        </div>
+    </div>
+</body>
+</html>
