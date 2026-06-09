@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Консольная игра "Путь героя" — задание по C++</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a2e;
+            color: #eee;
+        }
+        .container {
+            background: #16213e;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: #e67e22;
+            text-align: center;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: #f39c12;
+            margin-top: 25px;
+        }
+        .game-description {
+            background: #0f3460;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e67e22;
+        }
+        .task {
+            background: #1a1a2e;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 5px solid #e67e22;
+        }
+        .code-block {
+            background: #0a0a1a;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #98f0ff;
+        }
+        .requirements {
+            background: #0f3460;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .requirements ul, .task ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .requirements li, .task li {
+            margin: 5px 0;
+        }
+        .stat-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .stat-table th, .stat-table td {
+            border: 1px solid #e67e22;
+            padding: 8px;
+            text-align: center;
+        }
+        .stat-table th {
+            background: #e67e22;
+            color: #1a1a2e;
+        }
+        .note {
+            background: #1e3a5f;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .output {
+            background: #0a0a1a;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: #7fff00;
+            margin: 10px 0;
+        }
+        .answers {
+            background: #1b5e20;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .answers summary {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 10px;
+            background: #2e7d32;
+            border-radius: 5px;
+            margin: -10px;
+        }
+        .answer {
+            background: #2e7d32;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        .stat-card {
+            background: #0f3460;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            min-width: 80px;
+        }
+        .stat-card span {
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎮 Консольная игра "Путь героя"</h1>
+
+    <div class="game-description">
+        <h2>📖 Описание игры</h2>
+        <p>Вам предстоит создать пошаговую RPG-игру в консоли. Ваш герой сражается с 5 противниками, после каждой победы повышая свои характеристики. Игра должна быть полностью интерактивной, с системой боя, прокачкой и отображением состояния героя.</p>
+    </div>
+
+    <!-- Требования к игре -->
+    <div class="requirements">
+        <h2>⚔️ Требования к игре</h2>
+
+        <h3>1. Герой</h3>
+        <p>У героя должно быть <strong>5 параметров</strong>:</p>
+        <ul>
+            <li>❤️ <strong>Здоровье (HP)</strong> — при достижении 0 игра заканчивается поражением</li>
+            <li>⚔️ <strong>Сила (Strength)</strong> — влияет на наносимый урон</li>
+            <li>🛡️ <strong>Защита (Defense)</strong> — уменьшает входящий урон</li>
+            <li>🎯 <strong>Ловкость (Agility)</strong> — влияет на шанс критического удара</li>
+            <li>✨ <strong>Удача (Luck)</strong> — влияет на уклонение от атак</li>
+        </ul>
+
+        <h3>2. Противники (5 штук)</h3>
+        <p>Каждый противник должен быть уникальным. Создайте 5 разных типов врагов:</p>
+        <ul>
+            <li><strong>Гоблин</strong> — слабый, но ловкий</li>
+            <li><strong>Орк</strong> — сильный, но медленный</li>
+            <li><strong>Тролль</strong> — высокое здоровье, низкая защита</li>
+            <li><strong>Тёмный рыцарь</strong> — сбалансированный</li>
+            <li><strong>Босс (Дракон)</strong> — финальный противник, очень сильный</li>
+        </ul>
+
+        <h3>3. Система боя</h3>
+        <ul>
+            <li>Бой пошаговый: игрок выбирает действие (атаковать, использовать зелье, попытаться сбежать)</li>
+            <li>Расчёт урона: <code>урон = сила_атакующего - защита_цели + случайное_значение</code></li>
+            <li>Критический удар: если ловкость > случайного числа → урон × 2</li>
+            <li>Уклонение: если удача > случайного числа → атака промахивается</li>
+            <li>После каждого боя герой восстанавливает часть здоровья</li>
+        </ul>
+
+        <h3>4. Система прокачки</h3>
+        <p>После победы над противником игрок получает <strong>3 очка улучшения</strong>, которые можно распределить между 5 параметрами. Каждое очко увеличивает соответствующий параметр на 1.</p>
+
+        <h3>5. Отображение состояния</h3>
+        <p>В начале боя и после каждого хода должно отображаться состояние героя и текущего противника.</p>
+    </div>
+
+    <!-- Структура задания -->
+    <div class="task">
+        <h2>📝 Структура программы</h2>
+
+        <div class="code-block">
+// Структура героя
+struct Hero {
+    std::string name;
+    int hp;           // текущее здоровье
+    int maxHp;        // максимальное здоровье
+    int strength;     // сила
+    int defense;      // защита
+    int agility;      // ловкость (шанс крита)
+    int luck;         // удача (шанс уклонения)
+    int potions;      // количество зелий лечения
+};
+
+// Структура противника
+struct Enemy {
+    std::string name;
+    int hp;
+    int maxHp;
+    int strength;
+    int defense;
+    int agility;
+    int luck;
+    int expReward;    // опыт (не используется, но можно добавить)
+};
+        </div>
+
+        <h3>Функции, которые необходимо реализовать:</h3>
+        <ul>
+            <li><code>void displayHero(const Hero& hero)</code> — отображение состояния героя</li>
+            <li><code>void displayEnemy(const Enemy& enemy)</code> — отображение состояния противника</li>
+            <li><code>int calculateDamage(int attackerStrength, int targetDefense)</code> — расчёт урона</li>
+            <li><code>bool isCritical(int agility)</code> — проверка критического удара</li>
+            <li><code>bool isEvasion(int luck)</code> — проверка уклонения</li>
+            <li><code>void usePotion(Hero& hero)</code> — использование зелья</li>
+            <li><code>void upgradeHero(Hero& hero, int points)</code> — прокачка героя</li>
+            <li><code>bool fight(Hero& hero, Enemy& enemy)</code> — бой с противником (возвращает true при победе)</li>
+            <li><code>Enemy createEnemy(int level)</code> — создание противника в зависимости от уровня</li>
+        </ul>
+    </div>
+
+    <!-- Дополнительные требования -->
+    <div class="requirements">
+        <h2>🎯 Дополнительные требования к функционалу</h2>
+        <ul>
+            <li>Использование <strong>указателей</strong> для передачи больших структур в функции (или константных ссылок)</li>
+            <li>Использование <strong>перегрузки функций</strong> (например, для отображения разных типов существ)</li>
+            <li>Использование <strong>массива противников</strong> или <strong>std::vector</strong></li>
+            <li>Обработка некорректного ввода пользователя</li>
+            <li>Очистка консоли после каждого хода (<code>system("cls")</code> или <code>system("clear")</code>)</li>
+            <li>Добавление случайности с помощью <code>rand()</code> и <code>srand(time(0))</code></li>
+        </ul>
+    </div>
+
+    <!-- Пример вывода -->
+    <div class="requirements">
+        <h2>📺 Пример вывода игры</h2>
+        <div class="output">
+========================================
+         ПУТЬ ГЕРОЯ
+========================================
+
+Введите имя вашего героя: Артур
+
+=== НАЧАЛЬНЫЕ ХАРАКТЕРИСТИКИ ===
+❤️ Здоровье: 100/100
+⚔️ Сила: 15
+🛡️ Защита: 10
+🎯 Ловкость: 10
+✨ Удача: 10
+🧪 Зелья: 3
+
+========================================
+           БОЙ 1: ГОБЛИН
+========================================
+
+=== СОСТОЯНИЕ ===
+Герой [Артур]: ❤️ 100/100 | ⚔️15 | 🛡️10
+Гоблин: ❤️ 40/40 | ⚔️8 | 🛡️3
+
+Ваш ход!
+1. Атаковать
+2. Использовать зелье (3 шт.)
+3. Попытаться сбежать
+
+Выбор: 1
+
+Вы атакуете! Критический удар! Урон: 28
+Гоблин получает 28 урона!
+Гоблин: ❤️ 12/40
+
+Ход противника...
+Гоблин атакует! Урон: 5
+Вы получаете 5 урона!
+Герой: ❤️ 95/100
+
+...
+[продолжение боя]
+
+=== ПОБЕДА! ===
+Гоблин повержен!
+
+Вы получаете 3 очка для улучшения!
+
+РАСПРЕДЕЛИТЕ ОЧКИ (3):
+1. Сила (+1) → 16
+2. Защита (+1) → 11
+3. Ловкость (+1) → 11
+4. Удача (+1) → 10
+5. Здоровье (+1) → 101/101
+
+Ваш выбор: 1 1 2
+
+Новые характеристики:
+❤️ 101/101 | ⚔️17 | 🛡️11 | 🎯10 | ✨10 | 🧪3
+
+Продолжить? (Enter)
+        </div>
+    </div>
+
+    <div class="note">
+        💡 <strong>Советы по выполнению:</strong>
+        <ul>
+            <li>Начните с создания структур Hero и Enemy</li>
+            <li>Реализуйте базовые функции отображения</li>
+            <li>Добавьте систему расчёта урона и шансов</li>
+            <li>Постепенно добавляйте механику боя</li>
+            <li>В конце реализуйте прокачку и цикл игры</li>
+        </ul>
+    </div>
+
+    <div class="note">
+        ⭐ <strong>Бонусные задания (для отличия):</strong>
+        <ul>
+            <li>Добавить систему уровней и опыта</li>
+            <li>Реализовать разные типы атак (сильная/слабая)</li>
+            <li>Добавить магию или специальные способности</li>
+            <li>Сохранять прогресс в файл</li>
+            <li>Добавить анимацию боя</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px; padding: 15px; background: #0f3460; border-radius: 10px;">
+        🚀 Удачи в создании игры! Пусть ваш код будет чистым, а герой — непобедимым!<br>
+        <span style="font-size: 12px;">Используйте ООП, указатели и перегрузку функций для более элегантного решения</span>
+    </div>
+</div>
+</body>
+</html>
